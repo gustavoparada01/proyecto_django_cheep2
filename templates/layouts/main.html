@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- CSS de Boostrap -->
+
+    <!-- CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Incluye la biblioteca de Bootstrap JavaScript -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'images/styles/arreglos.css' %}"
+    />
+    {% block extra_css %}{% endblock %} {% block extra_js %}{% endblock %}
+  </head>
+  <body class="fondo" style="color: wheat">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand ml-1" href="/"
+          ><i class="bi bi-twitter-x"></i>shoes</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Inicio</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/post">Contactanos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/calzados">Calzados Aesthetic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/perfil">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Cerrar sesión</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Iniciar Sesión/ Registrarse</a>
+            </li>
+            {% endif %}
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Buscar"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-primary" type="submit">
+              Buscar
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+        
+
+
+  <main role="main" class="container py-5 my-5" >
+     {% if messages%}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} {% if message.tags == 'error' %}alert-danger{% endif %}" role="alert"> 
+            {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}
+      <div class=" col-12 col-sm-12 py-4 my-4">
+        {% block content %}
+
+        {% endblock %}
+      
+  </div>
+  </main>
+
+
+    <footer class="bg-dark text-white py-4 ">
+      <div class="container  text-center col-12 ">
+        <p>&copy; 2024 Xshoes. Todos los derechos reservados.</p>
+      </div>   
+        <div class="py-2 " >
+          <p style="color: rgb(233, 233, 233);"><i class="bi bi-instagram "></i>
+              <a href="https://instagram.com/xshoes_uy?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <span
+                      style="color: rgb(255, 255, 255);">Instagram </span></a>
+          </p>
+
+          <p style="color: rgb(255, 255, 255)";  ><i class="bi bi-whatsapp  "></i>
+              <a href="https://wa.me/598091987660" target="_blank"><span
+                style="color: rgb(255, 255, 255);">
+                      WhatsApp</a>
+          </p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Inicializar el carrusel utilizando Bootstrap 5
+      var myCarousel = new bootstrap.Carousel(
+        document.querySelector(".carousel"),
+        {
+          interval: 2000, // Cambiar a la cantidad de tiempo en milisegundos entre transiciones
+          // Otras opciones aquí
+        }
+      );
+    </script>
+  </body>
+</html>

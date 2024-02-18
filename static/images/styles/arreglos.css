@@ -1,0 +1,46 @@
+.arreglo{
+    color: white;
+    background-color: #737688;
+    background-image: linear-gradient(43deg, #737688 0%, #040404 46%, #1f1f1c 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.menu{
+    
+    margin-bottom: 400px;
+}
+
+.clase{
+    padding-top: 300px;
+}
+.posta{
+    margin-bottom: 200px;
+}
+
+.fondo{
+    background-color: #737688;
+    background-image: linear-gradient(43deg, #737688 0%, #040404 46%, #1f1f1c 100%);
+}
+
+
+
+.continente{
+  margin-top: 2000px;
+}
+
+/* styles.css */
+.gradiente-h1 {
+    position: relative;
+    font-size: 75px; /* Tamaño de la fuente */
+    overflow: hidden;
+    background-color: #0225eb;
+    background-image: linear-gradient(43deg, #1e3ffc 0%, #000000 46%, #ffffff 100%);
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+}
+
+a {
+    text-decoration: none; 
+}

@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+{% load static %}
+
+{%block content  %}
+<div class=" posta col-12 col-sm-12 ">
+
+{% for a in content %}  
+    
+<h1 class="text-center my-3 text-center gradiente-h1">{{a.title}}  </h1>
+<p class="text-center my-2">{{a.text}}</p>  
+
+{% endfor %}  
+
+<div class=" container  my-5 py-4">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner ">
+    {% for item in carousel_items %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}"  >
+      <img src="{{ item.image.url }}" class="d-block w-100" alt="{{ item.title }}">
+      <div class="carousel-caption">
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+</div>
+
+
+<h2 class=" py-4 my-5">  Valoraciones/Mensajes </h4>
+
+
+{% for p in posts %}
+
+<div class=" continente my-3 py-4 border-bottom   ">
+    <div>  
+
+        <h4>{{p.title}}</h4>
+        <p>{{p.text}}</p>  
+    </div>
+    <div>
+        {% for c in p.comment_set.all %}
+             <p>{{c.user.username}} escribio: {{c.text}}</p>
+        {% endfor%}
+    </div>
+    <div>
+        {% if request.user.is_authenticated and request.user == p.user %}
+            <a href="/post/{{p.id}}"> Editar</a>
+        {% endif %}
+    </div>
+    <div>
+        {% if request.user.is_authenticated %}
+        <form method="POST" action="/comment/">
+            {% csrf_token %}
+            <input type="hidden" value="{{p.id}}" name="post" >
+            <div class="form-group my-3">
+                <label>Texto</label>
+                <textarea  class="form-control" name="text" placeholder="Escribe un comentario"></textarea> 
+            </div>
+
+            <button class="btn btn-primary" type="submit"> Enviar Comentario</button>
+        </form>
+        {% endif %}
+    </div>
+    
+
+    
+</div>
+{% endfor %}
+
+{% endblock %}
+<script>
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>

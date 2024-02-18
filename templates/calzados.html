@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% load static %}
+
+{% block content %}
+<div class=" my-5 py-5">
+{% for p in calzados %}
+
+    <h2> {{ p.title }}</h2>
+    <p> Talle: {{ p.text }}</p> 
+    {% if p.imagess.image %}
+        <img src="{{ p.imagess.image.url }}" alt="Imagen asociada">
+    {% endif %}
+    <p>Precio: ${{ p.price }}</p> 
+
+{% endfor %} 
+<div class=" py-5 " >
+    <h1>El publico dice:</h1>
+
+    {% for pedido in pedidos %}
+    <div class="border-bottom  px-5 ">
+        <h3>{{ pedido.title }}</h3>
+         <p>{{ pedido.text }}</p>
+    </div>
+    {% endfor %}
+
+</div>
+<p>¡Nos interesa tu opinion!</p>
+<h3> A ti. ¿Cual te gustaria que trajeramos? </h3>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    <div class="form-group my-3">
+        <label>Marca </label>
+        <input type="text" class="form-control" name="title" placeholder="Marca" >
+    </div>
+    <div class="form-group my-3">
+        <label>Modelo</label>
+        <textarea type="text" class="form-control" name="text" placeholder="Modelo" >  </textarea>
+
+    <button class="btn btn-primary my-1" type="submit"> Enviar</button>
+</form>
+</div>
+{% endblock %}
